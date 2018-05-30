@@ -18,7 +18,7 @@ $(function(){
     $('#form').on('submit', function(e){
 		e.preventDefault();
 		var txt = $(this).serialize();
-		console.log(txt);
+		//console.log(txt);
 		
 		// GET
 		//$.ajax({
@@ -33,15 +33,32 @@ $(function(){
 		//	}
 		//});
 		
+		// POST
+		//$.ajax({
+		//	type:'POST',
+		//	url:'principal',
+		//	data:txt,
+		//	success: function(data){
+		//		$('div').html(data);
+		//	},
+		//	error: function(){
+		//		alert('Ocorreu um erro !');
+		//	}
+		//});
+		
+		// RETORNO JSON
 		$.ajax({
 			type:'POST',
-			url:'principal',
+			url:'retornoJson',
 			data:txt,
+			//dataType:'json',
 			success: function(data){
-				$('div').html(data);
+				console.log('retorno do json Nome '+data.nome)
+				console.log('retorno do json Senha '+data.senha)
+				$('div').html('Nome: '+data.nome+' Senha: '+data.senha);
 			},
-			error: function(){
-				alert('Ocorreu um erro !');
+			error: function(err){
+				alert('Ocorreu um erro !'+err);
 			}
 		});
 	});
